@@ -1,0 +1,21 @@
+@import "./mixins";
+@import "./variables";
+
+.main {
+	@include flex(start, center);
+	background-color: $secondary-bg;
+	padding: 16px 32px;
+}
+
+.nav {
+	@include media(mobile) {
+		@include flex(start, center);
+		gap: 16px;
+	}
+}
+
+.navlink{
+	font-size: 16px;
+	font-weight: 400;
+	letter-spacing: 0.4;
+}
