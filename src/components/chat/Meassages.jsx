@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { decrypterRot13 } from "../utils/decrypterRot13";
+import { decrypterRot13 } from "../../utils/decrypterRot13";
 
 const Meassages = ({ allMessages }) => {
 	const decrypt = (message) => decrypterRot13(message);

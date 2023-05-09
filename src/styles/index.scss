@@ -71,4 +71,20 @@ textarea {
 }
 body {
 	background-color: $main-bg;
+	font-family: $mainFont;
+}
+
+.container {
+	padding-inline: 16px;
+	margin: 0px auto;
+	@include media(tablet) {
+		padding-inline: 8px;
+	}
+}
+
+.section {
+	padding: 24px 0px;
+	@include media(desktop) {
+		padding: 40px 0px;
+	}
 }
