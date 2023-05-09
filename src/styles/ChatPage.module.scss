@@ -1,8 +1,8 @@
 @import "./mixins";
 @import "./variables";
 
-.chatScreen{
-    .chat{
-        
-    }
+.chatScreen {
+	@include flex(center, center);
+	.chat {
+	}
 }

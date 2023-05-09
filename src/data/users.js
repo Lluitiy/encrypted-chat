@@ -3,19 +3,19 @@ import { uid } from "uid";
 export const users = [
 	{
 		name: "Igor",
-		msgs: [],
+		msgs: [{ text: "Hi", id: uid() }],
 		avatar: "",
 		id: uid(),
 	},
 	{
 		name: "Pasha",
-		msgs: [],
+		msgs: [{ text: "Hello", id: uid() }],
 		avatar: "",
 		id: uid(),
 	},
 	{
 		name: "Masha",
-		msgs: [],
+		msgs: [{ text: "Privet", id: uid() }],
 		avatar: "",
 		id: uid(),
 	},

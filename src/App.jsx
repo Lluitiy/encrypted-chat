@@ -1,14 +1,15 @@
-import { Route, Routes } from "react-router-dom/dist";
+import { Navigate, Route, Routes, useParams } from "react-router-dom";
 
 import Layout from "./layout/layout";
 
 import AuthPage from "./layout/AuthLayout";
-import ChatPage from "./pages/ChatPage";
+// import ChatPage from "./pages/ChatPage";
 import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
-import Meassages from "./components/chat/Meassages";
+import SpecificChat from "./components/chat/SpecificChat";
+import ChatLayout from "./layout/ChatLayout";
 
 function App() {
 	return (
@@ -20,11 +21,14 @@ function App() {
 
 			<Route path="/" element={<Layout />}>
 				<Route path="home" index element={<HomePage />} />
-				<Route path="chat" element={<ChatPage />}>
-					<Route path=":id" element={<Meassages />}></Route>
+				<Route path="chat" element={<ChatLayout />}>
+					{/* <Route element={<ChatPage />} /> */}
+					<Route path=":id" element={<SpecificChat />} />
 				</Route>
+
 				<Route path="profile" element={<ProfilePage />} />
 			</Route>
+			<Route path="*" element={<Navigate to="/" />} />
 		</Routes>
 	);
 }

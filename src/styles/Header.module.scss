@@ -6,6 +6,9 @@
 	gap: 16px;
 	background-color: $header;
 	padding: 16px 32px;
+	@include media(tablet) {
+		padding: 16px;
+	}
 }
 
 .nav {
