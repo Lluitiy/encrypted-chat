@@ -30,6 +30,14 @@ const userSchema = new Schema(
 			minlength: 8,
 			required: true,
 		},
+		accessToken: {
+			type: String,
+			default: "",
+		},
+		refreshToken: {
+			type: String,
+			default: "",
+		},
 		avatarURL: {
 			type: String,
 			default:

@@ -11,6 +11,7 @@ const refresh = async (req, res) => {
 
 	try {
 		const { id } = jwt.verify(refToken, REFRESH_JWT_SECRET);
+
 		const isExist = await User.findOne({ id });
 		if (!isExist) {
 			throw HttpError(403, "Token invalid");
