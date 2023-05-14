@@ -7,6 +7,7 @@ export const register = createAsyncThunk(
 	async (data, { rejectWithValue, dispatch }) => {
 		try {
 			const result = await api.register(data);
+			console.log("result", result);
 			dispatch(login({ email: data.email, password: data.password }));
 			return result;
 		} catch ({ response }) {
@@ -42,6 +43,7 @@ export const logout = createAsyncThunk(
 	async (_, { rejectWithValue }) => {
 		try {
 			const result = await api.logout();
+			console.log("result", result);
 			return result;
 		} catch ({ response }) {
 			const { status, data } = response;

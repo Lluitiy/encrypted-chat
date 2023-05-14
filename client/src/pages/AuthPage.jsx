@@ -5,9 +5,7 @@ import Header from "../components/header";
 const AuthPage = () => {
 	return (
 		<>
-			<Header />
 			<Default />
-			<Outlet />
 		</>
 	);
 };

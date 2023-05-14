@@ -33,6 +33,7 @@ const authSlice = createSlice({
 		},
 		[login.fulfilled]: (store, { payload }) => {
 			store.loading = false;
+			console.log("qwe", payload.user);
 			store.user = payload.user;
 			store.token = payload.accessToken;
 			store.isLogin = true;

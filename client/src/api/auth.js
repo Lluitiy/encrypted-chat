@@ -51,6 +51,7 @@ export const login = async (data) => {
 export const logout = async () => {
 	const data = await instance.get("/auth/logout");
 	setToken();
+	console.log("data", data);
 	localStorage.removeItem("refreshToken");
 	return data;
 };

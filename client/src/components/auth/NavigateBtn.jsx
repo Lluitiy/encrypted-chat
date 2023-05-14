@@ -5,9 +5,9 @@ const NavigateBtn = ({ page }) => {
 	return (
 		<>
 			{page === "register" ? (
-				<Link to="register">register</Link>
+				<Link to="/register">register</Link>
 			) : (
-				<Link to="login">login</Link>
+				<Link to="/login">login</Link>
 			)}
 		</>
 	);

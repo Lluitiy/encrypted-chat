@@ -1,35 +1,96 @@
-import { Navigate, Route, Routes, useParams } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { lazy, Suspense, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { current } from "./redux/auth/auth-operations";
+import { getToken } from "./redux/auth/auth-selectors";
+import { PrivateRoute } from "./routes/private/PrivateRoute";
+import { PublicRoute } from "./routes/public/PublicRoute";
 
 import Layout from "./layout/layout";
-
-import AuthPage from "./layout/AuthLayout";
-// import ChatPage from "./pages/ChatPage";
-import ProfilePage from "./pages/ProfilePage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
-import SpecificChat from "./components/chat/SpecificChat";
-import ChatLayout from "./layout/ChatLayout";
+
+const AuthPage = lazy(() => import("./pages/AuthPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage"));
+const SpecificChat = lazy(() => import("./components/chat/SpecificChat"));
+const ChatLayout = lazy(() => import("./layout/ChatLayout"));
 
 function App() {
-	return (
-		<Routes>
-			<Route path="/auth" element={<AuthPage />}>
-				<Route index path="register" element={<RegisterPage />} />
-				<Route index path="login" element={<LoginPage />} />
-			</Route>
+	const dispatch = useDispatch();
+	const token = useSelector(getToken);
+	console.log(token);
+	useEffect(() => {
+		if (token) {
+			dispatch(current());
+		}
 
-			<Route path="/" element={<Layout />}>
-				<Route path="home" index element={<HomePage />} />
-				<Route path="chat" element={<ChatLayout />}>
-					{/* <Route element={<ChatPage />} /> */}
-					<Route path=":id" element={<SpecificChat />} />
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+	return (
+		<Suspense>
+			<Routes>
+				<Route path="/" element={<Layout />}>
+					<Route
+						path="auth"
+						element={
+							<PublicRoute index restricted redirect="/home">
+								<AuthPage />
+							</PublicRoute>
+						}
+					/>
+					<Route
+						path="register"
+						element={
+							<PublicRoute restricted redirect="/home">
+								<RegisterPage />
+							</PublicRoute>
+						}
+					/>
+					<Route
+						index
+						path="login"
+						element={
+							<PublicRoute restricted redirect="/home">
+								<LoginPage />
+							</PublicRoute>
+						}
+					/>
 				</Route>
 
-				<Route path="profile" element={<ProfilePage />} />
-			</Route>
-			<Route path="*" element={<Navigate to="/" />} />
-		</Routes>
+				<Route path="/" element={<Layout />}>
+					<Route path="/" index element={<HomePage />} />
+					<Route
+						path="chat"
+						element={
+							<PrivateRoute redirect="/login">
+								<ChatLayout />
+							</PrivateRoute>
+						}
+					>
+						{/* <Route element={<ChatPage />} /> */}
+						<Route
+							path=":id"
+							element={
+								<PrivateRoute redirect="/login">
+									<SpecificChat />
+								</PrivateRoute>
+							}
+						/>
+					</Route>
+
+					<Route
+						path="profile"
+						element={
+							<PrivateRoute redirect="/login">
+								<ProfilePage />
+							</PrivateRoute>
+						}
+					/>
+				</Route>
+				<Route path="*" element={<Navigate to="/" />} />
+			</Routes>
+		</Suspense>
 	);
 }
 
