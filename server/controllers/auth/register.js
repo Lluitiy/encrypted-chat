@@ -4,7 +4,7 @@ const { User } = require("../../models/userSchema");
 const { HttpError } = require("../../helpers");
 
 const register = async (req, res) => {
-	const { name, email, password } = req.body;
+	const { name, email, password, birthday } = req.body;
 	const isUser = await User.findOne({ email });
 
 	if (isUser) {
@@ -17,12 +17,14 @@ const register = async (req, res) => {
 		name,
 		email,
 		password: hashPassword,
+		birthday,
 	});
 
 	res.status(201).json({
 		user: {
 			email: newUser.email,
 			name: newUser.name,
+			birthday: newUser.birthday,
 		},
 	});
 };
