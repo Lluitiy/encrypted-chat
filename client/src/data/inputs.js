@@ -15,8 +15,8 @@ export const passwordOpt = {
 	placeholder: "Password",
 	required: true,
 	requiredMessage: "Password is required",
-	pattern: /^(?=.{7,32}$)([0-9A-Za-z])*$/i,
-	patternMessage: "Min 7 max 32 symbols, no spaces",
+	pattern: /^(?=.{8,32}$)([0-9A-Za-z])*$/i,
+	patternMessage: "Min 8 max 32 symbols, no spaces",
 };
 export const nameOpt = {
 	name: "name",
@@ -24,17 +24,17 @@ export const nameOpt = {
 	placeholder: "Name",
 	required: true,
 	requiredMessage: "Enter your name, please",
-	pattern: /^(?=.{2,16}$)([A-Za-z])*$/i,
-	patternMessage: "Latins only min 2, max 16 ",
+	pattern: /^([A-Za-z]+\s)*[A-Za-z]{2,32}$/i,
+	patternMessage: "Latins only min 2, max 32 ",
 };
 export const birthdayOpt = {
 	label: "Date of Birth",
 	name: "birthday",
 	type: "text",
-	placeholder: "Type date of birth",
-	// required: true,
-	// requiredMessage: 'Enter the date of birth',
+	placeholder: "Date of birth",
+	required: true,
+	requiredMessage: "Enter the date of birth",
 	pattern:
 		/^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/,
-	patternMessage: "01.01.2020",
+	patternMessage: "Should be in such format dd.mm.yyyy",
 };

@@ -60,24 +60,56 @@ const AuthForm = ({ auth }) => {
 			});
 	};
 	return auth === "register" ? (
-		<form className={styles} onSubmit={handleSubmit(onSubmit)}>
-			<Input settings={nameOpt} register={register} errors={errors} />
-			<Input settings={emailOpt} register={register} errors={errors} />
-			<Input settings={passwordOpt} register={register} errors={errors} />
-			<Input settings={birthdayOpt} register={register} errors={errors} />
+		<div className="section">
+			<div className="container">
+				<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+					<Input
+						settings={nameOpt}
+						register={register}
+						errors={errors}
+					/>
+					<Input
+						settings={emailOpt}
+						register={register}
+						errors={errors}
+					/>
+					<Input
+						settings={passwordOpt}
+						register={register}
+						errors={errors}
+					/>
+					<Input
+						settings={birthdayOpt}
+						register={register}
+						errors={errors}
+					/>
 
-			<button className={styles} type="submit">
-				Register
-			</button>
-		</form>
+					<button className={styles} type="submit">
+						Register
+					</button>
+				</form>
+			</div>
+		</div>
 	) : (
-		<form className={styles} onSubmit={handleSubmit(onSubmit)}>
-			<Input settings={emailOpt} register={register} errors={errors} />
-			<Input settings={passwordOpt} register={register} errors={errors} />
-			<button className={styles} type="submit">
-				Login
-			</button>
-		</form>
+		<div className="section">
+			<div className="container">
+				<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+					<Input
+						settings={emailOpt}
+						register={register}
+						errors={errors}
+					/>
+					<Input
+						settings={passwordOpt}
+						register={register}
+						errors={errors}
+					/>
+					<button className={styles} type="submit">
+						Login
+					</button>
+				</form>
+			</div>
+		</div>
 	);
 };
 

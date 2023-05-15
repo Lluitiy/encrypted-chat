@@ -9,7 +9,6 @@ import { PublicRoute } from "./routes/public/PublicRoute";
 import Layout from "./layout/layout";
 import HomePage from "./pages/HomePage";
 
-const AuthPage = lazy(() => import("./pages/AuthPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const ProfilePage = lazy(() => import("./pages/ProfilePage"));
@@ -24,21 +23,11 @@ function App() {
 		if (token) {
 			dispatch(current());
 		}
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	return (
 		<Suspense>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					<Route
-						path="auth"
-						element={
-							<PublicRoute index restricted redirect="/home">
-								<AuthPage />
-							</PublicRoute>
-						}
-					/>
 					<Route
 						path="register"
 						element={

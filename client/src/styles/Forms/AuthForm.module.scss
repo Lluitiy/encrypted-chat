@@ -1,2 +1,15 @@
 @import "../mixins";
 @import "../variables";
+
+.form {
+	padding: 12px 0px;
+	margin: 0px auto;
+	width: 240px;
+	@include media(tablet) {
+		width: 460px;
+		padding: 24px 0px;
+	}
+	@include media(desktop) {
+		width: 768px;
+	}
+}
