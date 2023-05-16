@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { current } from "./redux/auth/auth-operations";
-import { getToken } from "./redux/auth/auth-selectors";
+import { getToken, getUserId } from "./redux/auth/auth-selectors";
 import { PrivateRoute } from "./routes/private/PrivateRoute";
 import { PublicRoute } from "./routes/public/PublicRoute";
 
@@ -18,11 +18,13 @@ const ChatLayout = lazy(() => import("./layout/ChatLayout"));
 function App() {
 	const dispatch = useDispatch();
 	const token = useSelector(getToken);
-	console.log(token);
+	const userId = useSelector(getUserId);
+	console.log("userId", userId);
 	useEffect(() => {
 		if (token) {
 			dispatch(current());
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	return (
 		<Suspense>

@@ -9,6 +9,16 @@ export const emailOpt = {
 
 	patternMessage: "Invalid email address",
 };
+export const nickNameOpt = {
+	name: "nickName",
+	type: "text",
+	placeholder: "Nickname",
+	required: true,
+	requiredMessage: "Nickname field is required",
+	pattern: /.*/,
+
+	patternMessage: "Nickname field is required",
+};
 export const passwordOpt = {
 	name: "password",
 	type: "password",

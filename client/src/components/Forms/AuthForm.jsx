@@ -1,8 +1,16 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
-import { emailOpt, nameOpt, passwordOpt, birthdayOpt } from "../../data/inputs";
+import {
+	emailOpt,
+	nameOpt,
+	passwordOpt,
+	birthdayOpt,
+	nickNameOpt,
+} from "../../data/inputs";
+
 import { register as reg } from "../../redux/auth/auth-operations";
 import { login } from "../../redux/auth/auth-operations";
 
@@ -17,6 +25,7 @@ const AuthForm = ({ auth }) => {
 					email: "",
 					password: "",
 					birthday: "",
+					nickName: "",
 			  }
 			: {
 					email: "",
@@ -28,10 +37,10 @@ const AuthForm = ({ auth }) => {
 	const {
 		register,
 		handleSubmit,
-		watch,
-		formState: { errors, isValid },
+
+		formState: { errors },
 	} = useForm({ mode: "onBlur", defaultValues: defaultValues });
-	const onSubmit = ({ email, password, name, birthday }) => {
+	const onSubmit = ({ email, password, name, birthday, nickName }) => {
 		let res =
 			auth === "register"
 				? {
@@ -39,6 +48,7 @@ const AuthForm = ({ auth }) => {
 						email,
 						password,
 						birthday,
+						nickName,
 				  }
 				: {
 						email,
@@ -65,6 +75,11 @@ const AuthForm = ({ auth }) => {
 				<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 					<Input
 						settings={nameOpt}
+						register={register}
+						errors={errors}
+					/>
+					<Input
+						settings={nickNameOpt}
 						register={register}
 						errors={errors}
 					/>
