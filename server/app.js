@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const authRouter = require("./routes/api/auth");
+const userRouter = require("./routes/api/user");
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.static("public"));
 
 app.use("/api/auth", authRouter);
+app.use("/api/user", userRouter);
 
 app.get("/", (req, res) => {
 	return res.send("Hello World qqqqqqq");
