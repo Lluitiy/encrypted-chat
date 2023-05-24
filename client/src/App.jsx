@@ -6,7 +6,7 @@ import { getToken, getUserId } from "./redux/auth/auth-selectors";
 import { PrivateRoute } from "./routes/private/PrivateRoute";
 import { PublicRoute } from "./routes/public/PublicRoute";
 
-import Layout from "./layout/layout";
+import Layout from "./layout/Layout";
 import HomePage from "./pages/HomePage";
 
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
